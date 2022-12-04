@@ -13,8 +13,8 @@ public class StationInfo {
     private List<Integer> time;
 
     public StationInfo(List<Station> stations, List<Integer> distance, List<Integer> time) {
-        validateData(stations, distance);
-        validateData(stations, time);
+//        validateData(stations, distance);
+//        validateData(stations, time);
         this.stations = stations;
         this.distance = distance;
         this.time = time;
