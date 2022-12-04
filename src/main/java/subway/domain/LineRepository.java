@@ -12,6 +12,12 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public static void addLines(List<Line> lines) {
+        for (Line line : lines) {
+            addLine(line);
+        }
+    }
+
     public static void addLine(Line line) {
         lines.add(line);
     }

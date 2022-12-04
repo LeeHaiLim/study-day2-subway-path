@@ -25,14 +25,15 @@
   - [x] 입력받은 두 역의 거리와 시간 정보 제공 #getDistanceDto
 
 - Station
-  - [ ] 초기 생성
+  - [x] 초기 생성
     - [ ] 이름 Validation 실시
   - #getName()
+  - [x] 입력받은 station의 이름이 같은지 비교하는 기능 #isEqual
 
 - LineRepository
-  - [ ] 노선들을 저장하는 기능 #saveLines()
+  - [x] 노선들을 저장하는 기능 #saveLines()
     - 해당 노선이 이미 있을 경우 에러 발생
-  - [ ] 노선들을 조회하는 기능 #getLines()
+  - [x] 노선들을 조회하는 기능 #lines()
   - [ ] 입력받은 두 역 사이에 거리 조회 #getDistance()
   - [ ] 입력받은 두 역 사이의 시간 조회 #getTime()
 
