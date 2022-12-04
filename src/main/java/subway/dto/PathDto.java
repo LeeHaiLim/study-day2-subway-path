@@ -2,13 +2,13 @@ package subway.dto;
 
 import java.util.List;
 
-public class ResultDto {
+public class PathDto {
 
     private final List<String> stations;
     private final int totalDistance;
     private final int totalTime;
 
-    public ResultDto(List<String> stations, int totalDistance, int totalTime) {
+    public PathDto(List<String> stations, int totalDistance, int totalTime) {
         this.stations = stations;
         this.totalDistance = totalDistance;
         this.totalTime = totalTime;

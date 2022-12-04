@@ -8,7 +8,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.dto.SectionDto;
-import subway.dto.ResultDto;
+import subway.dto.PathDto;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,27 +31,27 @@ public class SubwayService {
         }
     }
 
-    public static ResultDto getPathByDistance(String startStationName, String endStationName) {
+    public static PathDto getPathByDistance(String startStationName, String endStationName) {
         Station startStation = StationRepository.getStation(startStationName);
         Station endStation = StationRepository.getStation(endStationName);
 
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(distanceGraph);
         List<Station> path = dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
 
-        return pathToResultDto(path);
+        return pathToPathDto(path);
     }
 
-    public static ResultDto getPathByTime(String startStationName, String endStationName) {
+    public static PathDto getPathByTime(String startStationName, String endStationName) {
         Station startStation = StationRepository.getStation(startStationName);
         Station endStation = StationRepository.getStation(endStationName);
 
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(timeGraph);
         List<Station> path = dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
 
-        return pathToResultDto(path);
+        return pathToPathDto(path);
     }
 
-    private static ResultDto pathToResultDto(List<Station> path) {
+    private static PathDto pathToPathDto(List<Station> path) {
         int totalDistance = 0;
         int totalTime = 0;
         for (int index = 0; index < path.size() - 1; index++) {
@@ -60,7 +60,7 @@ public class SubwayService {
             totalTime += section.getTime();
         }
         List<String> names = path.stream().map(Station::getName).collect(Collectors.toList());
-        return new ResultDto(names, totalDistance, totalTime);
+        return new PathDto(names, totalDistance, totalTime);
     }
 
 
