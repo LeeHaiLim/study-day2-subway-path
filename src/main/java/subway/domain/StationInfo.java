@@ -2,6 +2,7 @@ package subway.domain;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
+import subway.dto.DistanceDto;
 import java.util.List;
 
 public class StationInfo {
@@ -56,14 +57,27 @@ public class StationInfo {
 
     public boolean isExistNextTo(Station station1, Station station2) {
         for (int index = 0; index < stations.size()-1; index++) {
-            if (stations.get(index).isEqual(station1)
-                    && stations.get(index+1).isEqual(station2)
-                    || stations.get(index).isEqual(station2)
-                    && stations.get(index+1).isEqual(station1)) {
+            if (isMatched(station1, station2, index)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public DistanceDto getDistanceDto(Station station1, Station station2) {
+        for (int index = 0; index < stations.size()-1; index++) {
+            if (isMatched(station1, station2, index)) {
+                return new DistanceDto(distance.get(index), time.get(index));
+            }
+        }
+        return null;
+    }
+
+    private boolean isMatched(Station station1, Station station2, int index) {
+        return stations.get(index).isEqual(station1)
+                && stations.get(index+1).isEqual(station2)
+                || stations.get(index).isEqual(station2)
+                && stations.get(index+1).isEqual(station1);
     }
 
 

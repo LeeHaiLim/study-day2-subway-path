@@ -2,6 +2,7 @@ package subway.domain;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
+import subway.dto.DistanceDto;
 
 public class Line {
     private String name;
@@ -26,5 +27,9 @@ public class Line {
 
     public boolean isExistNextTo(Station station1, Station station2) {
         return stationInfo.isExistNextTo(station1, station2);
+    }
+
+    public DistanceDto getDistanceDto(Station station1, Station station2) {
+        return stationInfo.getDistanceDto(station1, station2);
     }
 }
