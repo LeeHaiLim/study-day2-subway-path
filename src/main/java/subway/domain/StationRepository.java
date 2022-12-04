@@ -28,6 +28,9 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (isInStationRepository(station)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_IN_STATION_REPOSITORY.getMessage());
+        }
         stations.add(station);
     }
 
@@ -43,5 +46,14 @@ public class StationRepository {
 
     public static void deleteAll() {
         stations.clear();
+    }
+
+    private static boolean isInStationRepository(Station station) {
+        for (Station stationInRepository : stations) {
+            if (stationInRepository.isEqual(station)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

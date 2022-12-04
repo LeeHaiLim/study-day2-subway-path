@@ -40,7 +40,7 @@
 
 - StationRepository
     - [x] 역들을 저장하는 기능 #addStations()
-      - [ ] 중복된 역이름이 있을 경우 에러 발생 
+      - [x] 중복된 역이름이 있을 경우 에러 발생
     - [x] 역을 조회하는 기능 #getStations()
       - [x] 해당 역이 없다면 에러를 발생함
 
