@@ -79,7 +79,7 @@ public class SubwayController {
     }
 
     private List<String> readDepartureAndArrivalStation() {
-        InputMessage.showArrivalMessage();
+        InputMessage.showDepartureMessage();
         String departureStation = inputView.readStation(scanner);
 
         InputMessage.showArrivalMessage();
