@@ -29,13 +29,19 @@
   - [ ] 역 이름으로 노선 조회 - #findLinesByStationName()
 ---
 ### 환승 역들을 기준으로 구간들을 나누어 저장 ClassName - Section
-- [ ] 구간 생성 - #createSection()
-- [ ] 구간의 시작점 조회 - #getSectionStart()
-- [ ] 구간의 종료지점 조회 - #getSectionEnd()
-- [ ] 구간의 소요 시간 조회 - #getSectionTime()
-- [ ] 구간의 거리 조회 - #getSectionDistance()
----
-### Section 들을 저장하는 Repository - SectionRepository
-- [ ] 구간 저장 - #save()
+- 도메인 - Section
+  - [ ] 소요 시간 조회 - #getTime()
+  - [ ] 거리 조회 - #getDistance()
+  
+- 서비스 - SectionService
+  - [ ] 구간 생성 - #createSection()
+  - [ ] 구간의 시작점 조회 - #getSectionStart()
+  - [ ] 구간의 종료지점 조회 - #getSectionEnd()
+  - [ ] 구간의 소요 시간 조회 - #getSectionTime()
+  - [ ] 구간의 거리 조회 - #getSectionDistance()
+- 레포지토리 - SectionRepository
+  - [ ] 구간 저장 - #save()
+  - [ ] 구간의 시작점으로 조회 - #findSectionsByStart()
+  - [ ] 구간의 종료지점으로 조회 - #findSectionsByEnd()
 ---
 
