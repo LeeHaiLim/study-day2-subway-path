@@ -41,6 +41,16 @@ public class SubwayService {
         return pathToResultDto(path);
     }
 
+    public static ResultDto getPathByTime(String startStationName, String endStationName) {
+        Station startStation = StationRepository.getStation(startStationName);
+        Station endStation = StationRepository.getStation(endStationName);
+
+        DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(timeGraph);
+        List<Station> path = dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
+
+        return pathToResultDto(path);
+    }
+
     private static ResultDto pathToResultDto(List<Station> path) {
         int totalDistance = 0;
         int totalTime = 0;
