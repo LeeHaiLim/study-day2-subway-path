@@ -1,6 +1,7 @@
 package subway.domain;
 
 import subway.exception.ErrorMessage;
+import subway.helper.MapInitializer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+
+    static {
+        addStations(MapInitializer.getStations());
+    }
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);

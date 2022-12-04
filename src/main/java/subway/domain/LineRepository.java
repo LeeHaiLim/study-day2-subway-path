@@ -1,7 +1,8 @@
 package subway.domain;
 
-import subway.dto.DistanceDto;
+import subway.dto.SectionDto;
 import subway.exception.ErrorMessage;
+import subway.helper.MapInitializer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +10,10 @@ import java.util.Objects;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+
+    static {
+        addLines(MapInitializer.getLines());
+    }
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -32,7 +37,7 @@ public class LineRepository {
         lines.clear();
     }
 
-    public static SectionDto getDistanceDto(Station station1, Station station2) {
+    public static SectionDto getSectionDto(Station station1, Station station2) {
         for (Line line : lines) {
             SectionDto result = line.getDistanceDto(station1, station2);
             if (result != null) {
