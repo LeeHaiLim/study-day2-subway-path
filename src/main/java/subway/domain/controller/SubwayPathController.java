@@ -52,6 +52,7 @@ public class SubwayPathController {
             if (mainInput.equals(END)) {
                 return;
             }
+            OutputView.askDomain();
             OutputView.askFunction();
             DomainInput domainInput = retryUntilSuccess(() -> InputView.insertFunction(scanner));
             navigate(domainInput, scanner);
@@ -62,41 +63,47 @@ public class SubwayPathController {
         if (domainInput.equals(DomainInput.GO_BACK)) {
             return;
         }
+        String start = getStart(scanner);
+        String destination = getDestination(scanner);
+        List<String> result = new ArrayList<>();
         if (domainInput.equals(DomainInput.TIME_DOMAIN)) {
-            List<String> timeDomainResult = getTimeDomainResult(scanner);
-            OutputView.printResult(timeDomainResult);
+            result = getTimeDomainResult(start, destination);
         }
         if (domainInput.equals(DomainInput.DISTANCE_DOMAIN)) {
-            List<String> distanceDomainResult = getDistanceDomainResult(scanner);
-            OutputView.printResult(distanceDomainResult);
+            result = getDistanceDomainResult(start, destination);
         }
+        OutputView.printResult(result);
     }
 
     public void run() {
         init();
     }
 
-    public List<String> getTimeDomainResult(Scanner scanner) {
-        OutputView.askStart();
-        String start = InputView.insertStart(scanner);
-        OutputView.askDestination();
-        String destination = InputView.insertDestination(scanner);
+    public List<String> getTimeDomainResult(String start, String destination) {
         List<String> shortestTimePath = dijkstraShortestTimePath.getPath(start, destination).getVertexList();
+        int distance = 0;
+//        for (int i = 0; i < shortestTimePath.size() - 1; i++) {
+//            List<Section> sections = sectionService.getSectionStart(shortestTimePath.get(i));
+//            for (Section section : sections) {
+//                se
+//            }
+//
+//
+//        }
+        shortestTimePath.add(String.valueOf(distance));
         shortestTimePath.add(String.valueOf(dijkstraShortestTimePath.getPath(start, destination).getWeight()));
-        shortestTimePath.add(String.valueOf(dijkstraShortestPath.getPath(start, destination).getWeight()));
         return shortestTimePath;
     }
 
-    public List<String> getDistanceDomainResult(Scanner scanner) {
-        OutputView.askStart();
-        String start = InputView.insertStart(scanner);
-        OutputView.askDestination();
-        String destination = InputView.insertDestination(scanner);
+    public List<String> getDistanceDomainResult(String start,String destination) {
         List<String> shortestPath = dijkstraShortestPath.getPath(start, destination).getVertexList();
-        shortestPath.add(String.valueOf(dijkstraShortestTimePath.getPath(start, destination).getWeight()));
         shortestPath.add(String.valueOf(dijkstraShortestPath.getPath(start, destination).getWeight()));
+        int time = 0;
+        for (int i = 0; i < shortestPath.size() - 1; i++) {
+            time += dijkstraShortestTimePath.getPath(shortestPath.get(i), shortestPath.get(i + 1)).getWeight();
+        }
+        shortestPath.add(String.valueOf(time));
         return shortestPath;
-
     }
 
     private void setTimeGraph(WeightedMultigraph<String, DefaultWeightedEdge> graph) {
@@ -149,6 +156,16 @@ public class SubwayPathController {
         List<List<Station>> stations = Arrays.asList(secondLineStations, thirdLineStations, newLineStations);
         List<String> lineNames = Arrays.asList("2호선", "3호선", "신분당선");
         lineService.createLines(stations, lineNames);
+    }
+
+    private String getDestination(Scanner scanner) {
+        OutputView.askDestination();
+        return InputView.insertDestination(scanner);
+    }
+
+    private String getStart(Scanner scanner) {
+        OutputView.askStart();
+        return InputView.insertStart(scanner);
     }
 
     private void initSection() {
