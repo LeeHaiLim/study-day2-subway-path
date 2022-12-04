@@ -9,6 +9,7 @@ public class SectionService {
         Station end = StationRepository.findByName(endName);
         Line line = LineRepository.findByName(lineName);
         SectionRepository.save(new Section(start,end,line,time,distance));
+        SectionRepository.save(new Section(end,start,line,time,distance));
     }
 
     public List<Section> getSectionStart(String stationName) {
