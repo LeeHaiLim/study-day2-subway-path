@@ -1,22 +1,15 @@
 package subway.repository;
 
-import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
-import org.jgrapht.graph.DefaultWeightedEdge;
-import org.jgrapht.graph.WeightedMultigraph;
+import subway.domain.DistanceWeightPath;
+import subway.domain.TimeWeightPath;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class WeightRepository {
     private static WeightRepository weightRepository;
-    private static final WeightedMultigraph<String, DefaultWeightedEdge> timeWeight =
-            new WeightedMultigraph(DefaultWeightedEdge.class);
-    private static final WeightedMultigraph<String, DefaultWeightedEdge> distanceWeight =
-            new WeightedMultigraph(DefaultWeightedEdge.class);
-    private static final DijkstraShortestPath dijkstraTimePath =
-            new DijkstraShortestPath(timeWeight);
-    private static final DijkstraShortestPath dijkstraDistancePath =
-            new DijkstraShortestPath(distanceWeight);
+    private final DistanceWeightPath distanceWeightPath = new DistanceWeightPath();
+    private final TimeWeightPath timeWeightPath = new TimeWeightPath();
 
     private static final HashMap<List<String>, List<Integer>> weightInfo = new HashMap<>();
 
@@ -29,24 +22,9 @@ public class WeightRepository {
 
     public void addWeight(String station1, String station2, int distanceWeight, int timeWight) {
         addWeightInfo(station1, station2, distanceWeight, timeWight);
-        addStation(station1, station2);
-        addDistanceWight(station1, station2, distanceWeight);
-        addTimeWeight(station1, station2, timeWight);
-    }
 
-    private void addStation(String station1, String station2) {
-        timeWeight.addVertex(station1);
-        distanceWeight.addVertex(station1);
-        timeWeight.addVertex(station2);
-        distanceWeight.addVertex(station2);
-    }
-
-    private void addTimeWeight(String station1, String station2, int weight) {
-        timeWeight.setEdgeWeight(timeWeight.addEdge(station1, station2), weight);
-    }
-
-    private void addDistanceWight(String station1, String station2, int weight) {
-        distanceWeight.setEdgeWeight(distanceWeight.addEdge(station1, station2), weight);
+        distanceWeightPath.addDistanceWeight(station1, station2, distanceWeight);
+        timeWeightPath.addTimeWeight(station1, station2, timeWight);
     }
 
     private void addWeightInfo(String station1, String station2, int distanceWeight, int timeWight) {
@@ -54,19 +32,11 @@ public class WeightRepository {
     }
 
     public List<String> getShortestDistancePath(String station1, String station2) {
-        try {
-            return dijkstraDistancePath.getPath(station1, station2).getVertexList();
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 연결되어있지 않습니다.");
-        }
+        return distanceWeightPath.getShortestDistancePath(station1, station2);
     }
 
     public List<String> getMinimumTimePath(String station1, String station2) {
-        try {
-            return dijkstraTimePath.getPath(station1, station2).getVertexList();
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 연결되어있지 않습니다.");
-        }
+        return timeWeightPath.getMinimumTimePath(station1, station2);
     }
 
     public List<Integer> getWeight(String station1, String station2) {
