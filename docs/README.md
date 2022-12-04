@@ -19,7 +19,7 @@
   - [ ] 초기 생성시
     - Station 정보, 거리 정보, 걸리는 시간 정보를 가짐
     - [ ] 이름 Validation 실시
-  - [ ] 거리에 따라 간선 정보를 입력하는 기능 #setGraphByDistance
+  - [x] 거리에 따라 간선 정보를 입력하는 기능 #setGraphByDistance
   - [ ] 소요 시간에 따라 간선 정보를 입력하는 기능 #setGraphByTime
   - [ ] 입력받은 두 역이 붙어있는지 #isExistNextTo
   - [ ] 입력받은 두 역의 거리와 시간 정보 제공 #getDistanceDto
