@@ -18,7 +18,8 @@
 - Line
   - [x] 초기 생성시
     - Station 정보, 거리 정보, 걸리는 시간 정보를 가짐
-    - [ ] 이름 Validation 실시
+    - [x] 이름 Validation 실시
+      - 2글자 이상, "역"으로 끝나야 한다.
   - [x] 거리에 따라 간선 정보를 입력하는 기능 #setGraphByDistance
   - [x] 소요 시간에 따라 간선 정보를 입력하는 기능 #setGraphByTime
   - [x] 입력받은 두 역이 붙어있는지 #isExistNextTo
@@ -45,6 +46,7 @@
 - MapInitializer
   - [x] 초기 역 정보를 저장 및 객체 반환
   - [x] 초기 노선 정보를 저장 및 객체 반환
+    - [x] 해당 객체에서 에러가 발생할 경우, `RuntimeException`을 발생시켜 중단함
 
 - SubwayService
   - [x] 최단 거리로 조회하는 기능

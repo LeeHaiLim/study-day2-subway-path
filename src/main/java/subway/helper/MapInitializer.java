@@ -3,6 +3,7 @@ package subway.helper;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.StationInfo;
+import subway.exception.ErrorMessage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,14 @@ public class MapInitializer {
     private static final List<Line> lines = new ArrayList<>();
 
     static {
-        initializeStation();
-        initializeLine();
+        try {
+            initializeStation();
+            initializeLine();
+        } catch (Exception exception) {
+            throw new RuntimeException(ErrorMessage.INITIALIZE_ERROR.getMessage()
+                    + exception.getMessage());
+        }
+
     }
 
     private static void initializeStation() {
