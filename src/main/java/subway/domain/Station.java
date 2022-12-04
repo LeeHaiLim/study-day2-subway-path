@@ -11,5 +11,9 @@ public class Station {
         return name;
     }
 
+    public boolean isEqual(Station station) {
+        return station.getName().equals(station.getName());
+    }
+
     // 추가 기능 구현
 }

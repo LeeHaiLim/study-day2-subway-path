@@ -24,5 +24,7 @@ public class Line {
         stationInfo.setGraphByTime(graph);
     }
 
-
+    public boolean isExistNextTo(Station station1, Station station2) {
+        return stationInfo.isExistNextTo(station1, station2);
+    }
 }

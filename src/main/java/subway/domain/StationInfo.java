@@ -53,4 +53,18 @@ public class StationInfo {
             graph.setEdgeWeight(graph.addEdge(beforeStation, afterStation), time);
         }
     }
+
+    public boolean isExistNextTo(Station station1, Station station2) {
+        for (int index = 0; index < stations.size()-1; index++) {
+            if (stations.get(index).isEqual(station1)
+                    && stations.get(index+1).isEqual(station2)
+                    || stations.get(index).isEqual(station2)
+                    && stations.get(index+1).isEqual(station1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
