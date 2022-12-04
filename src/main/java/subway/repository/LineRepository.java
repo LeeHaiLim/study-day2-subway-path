@@ -3,10 +3,7 @@ package subway.repository;
 import subway.domain.Line;
 import subway.domain.Station;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class LineRepository {
     private static LineRepository lineRepository;
@@ -23,8 +20,15 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public static void addLine(Line line) {
+        lines.add(line);
+    }
     public static void addLine(String lineName, List<Station> stations) {
         lines.add(Line.of(lineName, stations));
+    }
+
+    public static boolean deleteLineByName(String name) {
+        return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static void deleteAll() {

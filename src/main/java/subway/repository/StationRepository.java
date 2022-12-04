@@ -2,10 +2,7 @@ package subway.repository;
 
 import subway.domain.Station;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class StationRepository {
     private static StationRepository stationRepository;
@@ -22,10 +19,16 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public static void addStation(Station station) {
+        stations.add(station);
+    }
     public static void addStation(String stationName) {
         stations.add(Station.from(stationName));
     }
 
+    public static boolean deleteStation(String name) {
+        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
     public static void deleteAll() {
         stations.clear();
     }
