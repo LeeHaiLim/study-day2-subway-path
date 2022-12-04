@@ -9,6 +9,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.dto.SectionDto;
 import subway.dto.PathDto;
+import subway.exception.ErrorMessage;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class SubwayService {
     }
 
     public static PathDto getPathByDistance(String startStationName, String endStationName) {
+        validateStationIsEqual(startStationName, endStationName);
         Station startStation = StationRepository.getStation(startStationName);
         Station endStation = StationRepository.getStation(endStationName);
 
@@ -42,6 +44,7 @@ public class SubwayService {
     }
 
     public static PathDto getPathByTime(String startStationName, String endStationName) {
+        validateStationIsEqual(startStationName,endStationName);
         Station startStation = StationRepository.getStation(startStationName);
         Station endStation = StationRepository.getStation(endStationName);
 
@@ -49,6 +52,12 @@ public class SubwayService {
         List<Station> path = dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
 
         return pathToPathDto(path);
+    }
+
+    private static void validateStationIsEqual(String startStationName, String endStationName) {
+        if (startStationName.equals(endStationName)) {
+            throw new IllegalArgumentException(ErrorMessage.START_END_EQUAL.getMessage());
+        }
     }
 
     private static PathDto pathToPathDto(List<Station> path) {
