@@ -1,13 +1,14 @@
 package subway.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StationService {
-    private final StationRepository stationRepository;
 
-    public StationService(StationRepository stationRepository) {
-        this.stationRepository = stationRepository;
-    }
-
-    public void createStations() {
-
+    public void createStations(List<String> stationNames) {
+        List<Station> stations = stationNames.stream()
+                .map(Station::new)
+                .collect(Collectors.toList());
+        StationRepository.saveAll(stations);
     }
 }

@@ -16,9 +16,9 @@
 ---
 ### 역의 정보를 저장하는 클래스 ClassName - Station
 - 서비스 - StationService
-  - [ ] 역 생성 - #createStations()
+  - [x] 역 생성 - #createStations()
 - 레포지토리 - StationRepository
-  - [ ] 역 전체 저장 - #saveAll()
+  - [x] 역 전체 저장 - #saveAll()
 ---
 ### 노선의 정보를 저장하는 클래스 ClassName - Line
 - 서비스 - LineService

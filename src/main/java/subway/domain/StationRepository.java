@@ -24,7 +24,7 @@ public class StationRepository {
         stations.clear();
     }
 
-    public static void saveAll() {
-
+    public static void saveAll(List<Station> createdStations) {
+        stations.addAll(createdStations);
     }
 }
