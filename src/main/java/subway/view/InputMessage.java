@@ -7,7 +7,7 @@ public class InputMessage {
         System.out.println("Q. 종료");
     }
 
-    public static void showStationMenu() {
+    public static void showPathMenu() {
         System.out.println("\n## 경로 기준");
         System.out.println("1. 최단 거리");
         System.out.println("2. 최소 시간");
