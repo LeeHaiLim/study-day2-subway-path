@@ -11,7 +11,7 @@ public class StationInfo {
     private List<Integer> distance;
     private List<Integer> time;
 
-    StationInfo(List<Station> stations, List<Integer> distance, List<Integer> time) {
+    public StationInfo(List<Station> stations, List<Integer> distance, List<Integer> time) {
         this.stations = stations;
         this.distance = distance;
         this.time = time;
