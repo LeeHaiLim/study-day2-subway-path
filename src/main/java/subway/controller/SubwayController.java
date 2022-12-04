@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.constant.Constant;
 import subway.domain.Menu.MainMenu;
 import subway.domain.Menu.PathMenu;
 import subway.domain.dto.PathDto;
@@ -64,7 +65,9 @@ public class SubwayController {
 
     private void runShortestDistance() {
         List<String> stations = readDepartureAndArrivalStation();
-        List<String> path = subwayService.getShortestDistancePath(stations.get(0), stations.get(1));
+        List<String> path = subwayService.getShortestDistancePath(
+                stations.get(Constant.DEPARTURE_STATION_INDEX),
+                stations.get(Constant.ARRIVAL_STATION_INDEX));
         List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
         PathDto pathDto = new PathDto(totalDistanceAndTime, path);
         outputView.printResult(pathDto);
@@ -72,7 +75,9 @@ public class SubwayController {
 
     private void runMinimumTime() {
         List<String> stations = readDepartureAndArrivalStation();
-        List<String> path = subwayService.getMinimumTimePath(stations.get(0), stations.get(1));
+        List<String> path = subwayService.getMinimumTimePath(
+                stations.get(Constant.DEPARTURE_STATION_INDEX),
+                stations.get(Constant.ARRIVAL_STATION_INDEX));
         List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
         PathDto pathDto = new PathDto(totalDistanceAndTime, path);
         outputView.printResult(pathDto);

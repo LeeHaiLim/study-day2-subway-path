@@ -1,16 +1,18 @@
 package subway.domain.dto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class PathDto {
+    public static final int DISTANCE_INDEX = 0;
+    public static final int TIME_INDEX = 1;
+
     private final int totalDistance;
     private final int totalTime;
     private final List<String> path;
 
     public PathDto(List<Integer> totalDiatanceAndTime, List<String> path) {
-        this.totalDistance = totalDiatanceAndTime.get(0);
-        this.totalTime = totalDiatanceAndTime.get(1);
+        this.totalDistance = totalDiatanceAndTime.get(DISTANCE_INDEX);
+        this.totalTime = totalDiatanceAndTime.get(TIME_INDEX);
         this.path = path;
     }
 
