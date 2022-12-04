@@ -1,4 +1,9 @@
-package subway.domain;
+package subway.domain.controller;
+
+import subway.domain.line.LineService;
+import subway.domain.section.SectionService;
+import subway.domain.station.Station;
+import subway.domain.station.StationService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +20,7 @@ public class SubwayPathController {
         this.sectionService = sectionService;
     }
 
-    void run() {
+    public void run() {
         init();
     }
 

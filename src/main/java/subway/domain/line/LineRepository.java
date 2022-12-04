@@ -1,11 +1,12 @@
-package subway.domain;
+package subway.domain.line;
+
+import subway.domain.station.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
