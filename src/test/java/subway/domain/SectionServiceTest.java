@@ -4,12 +4,16 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.domain.line.LineService;
+import subway.domain.section.Section;
+import subway.domain.section.SectionRepository;
+import subway.domain.section.SectionService;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SectionServiceTest {
 
@@ -38,7 +42,7 @@ class SectionServiceTest {
     void createSectionTest() {
         sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
         sectionService.createSection("보문역", "월곡역", "2호선", 5, 10);
-        Assertions.assertThat(SectionRepository.sections().size()).isEqualTo(2);
+        Assertions.assertThat(SectionRepository.sections().size()).isEqualTo(4);
     }
 
     @DisplayName("시작점 기준 구간 조회 기능 테스트")

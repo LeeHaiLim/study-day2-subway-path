@@ -1,16 +1,17 @@
 package subway.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.line.LineService;
+import subway.domain.station.Station;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineServiceTest {
     LineService lineService;

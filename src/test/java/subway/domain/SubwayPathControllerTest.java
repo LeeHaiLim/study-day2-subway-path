@@ -4,14 +4,22 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import subway.domain.controller.SubwayPathController;
+import subway.domain.line.LineRepository;
+import subway.domain.line.LineService;
+import subway.domain.section.SectionRepository;
+import subway.domain.section.SectionService;
+import subway.domain.station.StationRepository;
+import subway.domain.station.StationService;
 
 class SubwayPathControllerTest {
     SubwayPathController subwayPathController;
 
     @BeforeEach
     void setUp() {
+        LineRepository.deleteAll();
+        SectionRepository.deleteAll();
+        StationRepository.deleteAll();
         LineService lineService = new LineService();
         SectionService sectionService = new SectionService();
         StationService stationService = new StationService();

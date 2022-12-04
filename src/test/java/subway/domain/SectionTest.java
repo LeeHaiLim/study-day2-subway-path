@@ -3,10 +3,11 @@ package subway.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import subway.domain.line.Line;
+import subway.domain.section.Section;
+import subway.domain.station.Station;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SectionTest {
 

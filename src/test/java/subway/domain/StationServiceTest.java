@@ -4,12 +4,11 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.domain.station.StationRepository;
+import subway.domain.station.StationService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StationServiceTest {
 
@@ -17,6 +16,7 @@ class StationServiceTest {
 
     @BeforeEach
     void setUp() {
+        StationRepository.deleteAll();
         stationService = new StationService();
     }
 
