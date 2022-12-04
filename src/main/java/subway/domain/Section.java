@@ -22,4 +22,12 @@ public class Section {
     public int getDistance() {
         return this.distance;
     }
+
+    public Station getStart() {
+        return start;
+    }
+
+    public Station getEnd() {
+        return end;
+    }
 }

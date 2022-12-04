@@ -35,8 +35,8 @@
   
 - 서비스 - SectionService
   - [x] 구간 생성 - #createSection()
-  - [ ] 구간의 시작점 조회 - #getSectionStart()
-  - [ ] 구간의 종료지점 조회 - #getSectionEnd()
+  - [x] 구간의 시작점 조회 - #getSectionStart()
+  - [x] 구간의 종료지점 조회 - #getSectionEnd()
   - [ ] 구간의 소요 시간 조회 - #getSectionTime()
   - [ ] 구간의 거리 조회 - #getSectionDistance()
 - 레포지토리 - SectionRepository

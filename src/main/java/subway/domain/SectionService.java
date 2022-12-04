@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.List;
+
 public class SectionService {
 
     public void createSection(String startName, String endName, String lineName, int time, int distance) {
@@ -9,12 +11,12 @@ public class SectionService {
         SectionRepository.save(new Section(start,end,line,time,distance));
     }
 
-    public Station getSectionStart() {
-        return null;
+    public List<Section> getSectionStart(String stationName) {
+        return SectionRepository.findSectionsByStart(stationName);
     }
 
-    public Station getSectionEnd() {
-        return null;
+    public List<Section> getSectionEnd(String stationName) {
+        return SectionRepository.findSectionsByEnd(stationName);
     }
 
     public int getSectionTime() {
