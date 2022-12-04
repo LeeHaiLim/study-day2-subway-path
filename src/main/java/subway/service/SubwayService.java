@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.constant.Constant;
 import subway.repository.WeightRepository;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class SubwayService {
         int totalTime = 0;
         for (int idx = 0; idx < path.size() - 1; idx++) {
             List<Integer> weight = weightRepository.getWeight(path.get(idx), path.get(idx + 1));
-            totalDistance += weight.get(0);
-            totalTime += weight.get(1);
+            totalDistance += weight.get(Constant.DISTANCE_INDEX);
+            totalTime += weight.get(Constant.TIME_INDEX);
         }
         return List.of(totalDistance, totalTime);
     }
