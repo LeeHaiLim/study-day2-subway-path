@@ -1,7 +1,7 @@
 ##기능 목록
 
 ### 입력을 담당하는 클래스 ClassName - InputView
-- [ ] 메인 입력 받기 - #insertMain()
+- [x] 메인 입력 받기 - #insertMain()
 - [ ] 기능 입력 받기 - #intsertFunction()
 - [ ] 출발역 입력받기 - #insertStart()
 - [ ] 도착역 입력 받기 - #insertDestination()
