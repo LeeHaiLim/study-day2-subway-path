@@ -4,6 +4,7 @@ public enum ErrorMessage {
     STATION_NAME_INVALID("역 이름은 2글자 이상이며 \"역\"으로 끝나야 합니다."),
     LINE_NAME_INVALID("노선 이름은 2글자 이상이며 \"선\"으로 끝나야 합니다."),
     ALREADY_IN_STATION_REPOSITORY("해당 역은 이미 repository 안에 있습니다."),
+    STATION_FORM_INVALID("STATION_FORM 형식이 잘못되었습니다."),
 
     SERVICE_ERROR("조회 과정에서 에러가 발생했습니다. 관리자에게 문의하세요."),
     INITIALIZE_ERROR("초기 설정 오류입니다. 관리자에게 문의하세요.\n"),

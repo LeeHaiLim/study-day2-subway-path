@@ -3,6 +3,7 @@ package subway.domain;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
 import subway.dto.SectionDto;
+import subway.exception.ErrorMessage;
 import java.util.List;
 
 public class StationInfo {
@@ -12,9 +13,26 @@ public class StationInfo {
     private List<Integer> time;
 
     public StationInfo(List<Station> stations, List<Integer> distance, List<Integer> time) {
+        validateData(stations, distance);
+        validateData(stations, time);
         this.stations = stations;
         this.distance = distance;
         this.time = time;
+    }
+
+    private void validateData(List<Station> stations, List<Integer> data) {
+        if (stations.size() - 1 != data.size() || isPositiveIntegers(data)) {
+            throw new IllegalArgumentException(ErrorMessage.STATION_FORM_INVALID.getMessage());
+        }
+    }
+
+    private boolean isPositiveIntegers(List<Integer> integers) {
+        for (int integer : integers) {
+            if (integer <= 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setGraphByDistance(WeightedMultigraph<Station, DefaultWeightedEdge> graph) {
