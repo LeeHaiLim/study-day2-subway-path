@@ -58,4 +58,20 @@ class SubwayServiceTest {
         List<String> path = subwayService.getMinimumTimePath("양재역", "교대역");
         Assertions.assertThat(path).isEqualTo(List.of("양재역", "남부터미널역", "교대역"));
     }
+
+    @DisplayName("경로에 따른 총 소요 거리 및 시간 조회")
+    @Test
+    void getTotalDistanceAndTimeTest() {
+        List<String> path = subwayService.getShortestDistancePath("양재역", "교대역");
+        List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
+        Assertions.assertThat(totalDistanceAndTime).isEqualTo(List.of(4, 11));
+    }
+
+    @DisplayName("경로에 따른 총 소요 거리 및 시간 조회")
+    @Test
+    void getTotalDistanceAndTimeTest2() {
+        List<String> path = subwayService.getMinimumTimePath("양재역", "교대역");
+        List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
+        Assertions.assertThat(totalDistanceAndTime).isEqualTo(List.of(9, 7));
+    }
 }
