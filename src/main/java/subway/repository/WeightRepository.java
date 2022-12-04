@@ -61,10 +61,11 @@ public class WeightRepository {
         return dijkstraTimePath.getPath(station1, station2).getVertexList();
     }
 
-    public List<String> getWeight(String station1, String station2) {
-        return weightInfo.keySet().stream()
+    public List<Integer> getWeight(String station1, String station2) {
+        List<String> key = weightInfo.keySet().stream()
                 .filter(stations -> stations.containsAll(List.of(station1, station2)))
                 .findAny()
                 .get();
+        return weightInfo.get(key);
     }
 }
