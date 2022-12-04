@@ -54,11 +54,19 @@ public class WeightRepository {
     }
 
     public List<String> getShortestDistancePath(String station1, String station2) {
-        return dijkstraDistancePath.getPath(station1, station2).getVertexList();
+        try {
+            return dijkstraDistancePath.getPath(station1, station2).getVertexList();
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 연결되어있지 않습니다.");
+        }
     }
 
     public List<String> getMinimumTimePath(String station1, String station2) {
-        return dijkstraTimePath.getPath(station1, station2).getVertexList();
+        try {
+            return dijkstraTimePath.getPath(station1, station2).getVertexList();
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 연결되어있지 않습니다.");
+        }
     }
 
     public List<Integer> getWeight(String station1, String station2) {
