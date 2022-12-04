@@ -34,11 +34,12 @@ public class OutputView {
         System.out.println("## 도착역을 입력하세요.");
     }
 
-    public static void printResult(int time, int distance, List<String> stationNames) {
+    public static void printResult(List<String> results) {
         System.out.println(PRE_FIX + "---");
-        System.out.println(PRE_FIX + "총 거리: " + distance + "km");
-        System.out.println(PRE_FIX + "총 소요 시간: " + time + "분");
+        System.out.println(PRE_FIX + "총 거리: " + results.get(results.size()-2) + "km");
+        System.out.println(PRE_FIX + "총 소요 시간: " + results.get(results.size()-1) + "분");
         System.out.println(PRE_FIX + "---");
+        List<String> stationNames = results.subList(0, results.size() - 2);
         stationNames.forEach(name -> System.out.println(PRE_FIX + name));
     }
 

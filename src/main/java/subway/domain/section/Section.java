@@ -33,4 +33,8 @@ public class Section {
     public Station getEnd() {
         return end;
     }
+
+    public String getLineName() {
+        return this.line.getName();
+    }
 }

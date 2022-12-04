@@ -31,4 +31,10 @@ public class SectionRepository {
                 .filter(section -> section.getEnd().getName().equals(stationName))
                 .collect(Collectors.toList());
     }
+
+    public static List<Section> findSectionsByLineName(String lineName) {
+        return sections().stream()
+                .filter(section -> section.getLineName().equals(lineName))
+                .collect(Collectors.toList());
+    }
 }

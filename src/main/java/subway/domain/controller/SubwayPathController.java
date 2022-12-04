@@ -1,18 +1,26 @@
 package subway.domain.controller;
 
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.WeightedMultigraph;
 import subway.domain.DomainInput;
 import subway.domain.MainInput;
+import subway.domain.line.Line;
 import subway.domain.line.LineService;
+import subway.domain.section.Section;
+import subway.domain.section.SectionRepository;
 import subway.domain.section.SectionService;
 import subway.domain.station.Station;
 import subway.domain.station.StationService;
 import subway.ui.InputView;
 import subway.ui.OutputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static subway.domain.MainInput.END;
 import static subway.domain.MainInput.START;
@@ -21,11 +29,19 @@ public class SubwayPathController {
     private final LineService lineService;
     private final StationService stationService;
     private final SectionService sectionService;
+    private final WeightedMultigraph<String, DefaultWeightedEdge> timeGraph
+            = new WeightedMultigraph(DefaultWeightedEdge.class);
+    private final WeightedMultigraph<String, DefaultWeightedEdge> distanceGraph
+            = new WeightedMultigraph(DefaultWeightedEdge.class);
+    private final DijkstraShortestPath dijkstraShortestTimePath = new DijkstraShortestPath(timeGraph);
+    private final DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(distanceGraph);
 
     public SubwayPathController(LineService lineService, StationService stationService, SectionService sectionService) {
         this.lineService = lineService;
         this.stationService = stationService;
         this.sectionService = sectionService;
+        setTimeGraph(timeGraph);
+        setDistanceGraph(distanceGraph);
     }
 
     public void runMain(Scanner scanner) {
@@ -38,24 +54,77 @@ public class SubwayPathController {
             }
             OutputView.askFunction();
             DomainInput domainInput = retryUntilSuccess(() -> InputView.insertFunction(scanner));
-            navigate(domainInput);
+            navigate(domainInput, scanner);
         } while (true);
     }
 
-    private void navigate(DomainInput domainInput) {
+    private void navigate(DomainInput domainInput, Scanner scanner) {
         if (domainInput.equals(DomainInput.GO_BACK)) {
-            return ;
+            return;
         }
         if (domainInput.equals(DomainInput.TIME_DOMAIN)) {
-
+            List<String> timeDomainResult = getTimeDomainResult(scanner);
+            OutputView.printResult(timeDomainResult);
         }
         if (domainInput.equals(DomainInput.DISTANCE_DOMAIN)) {
-
+            List<String> distanceDomainResult = getDistanceDomainResult(scanner);
+            OutputView.printResult(distanceDomainResult);
         }
     }
 
     public void run() {
         init();
+    }
+
+    public List<String> getTimeDomainResult(Scanner scanner) {
+        OutputView.askStart();
+        String start = InputView.insertStart(scanner);
+        OutputView.askDestination();
+        String destination = InputView.insertDestination(scanner);
+        List<String> shortestTimePath = dijkstraShortestTimePath.getPath(start, destination).getVertexList();
+        shortestTimePath.add(String.valueOf(dijkstraShortestTimePath.getPath(start, destination).getWeight()));
+        shortestTimePath.add(String.valueOf(dijkstraShortestPath.getPath(start, destination).getWeight()));
+        return shortestTimePath;
+    }
+
+    public List<String> getDistanceDomainResult(Scanner scanner) {
+        OutputView.askStart();
+        String start = InputView.insertStart(scanner);
+        OutputView.askDestination();
+        String destination = InputView.insertDestination(scanner);
+        List<String> shortestPath = dijkstraShortestPath.getPath(start, destination).getVertexList();
+        shortestPath.add(String.valueOf(dijkstraShortestTimePath.getPath(start, destination).getWeight()));
+        shortestPath.add(String.valueOf(dijkstraShortestPath.getPath(start, destination).getWeight()));
+        return shortestPath;
+
+    }
+
+    private void setTimeGraph(WeightedMultigraph<String, DefaultWeightedEdge> graph) {
+        List<String> stationNames = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+        for (String stationName : stationNames) {
+            graph.addVertex(stationName);
+        }
+        graph.setEdgeWeight(graph.addEdge("교대역", "강남역"), 3);
+        graph.setEdgeWeight(graph.addEdge("강남역", "역삼역"), 3);
+        graph.setEdgeWeight(graph.addEdge("교대역", "남부터미널역"), 2);
+        graph.setEdgeWeight(graph.addEdge("남부터미널역", "양재역"), 5);
+        graph.setEdgeWeight(graph.addEdge("양재역", "매봉역"), 1);
+        graph.setEdgeWeight(graph.addEdge("강남역", "양재역"), 8);
+        graph.setEdgeWeight(graph.addEdge("양재역", "양재시민의숲역"), 3);
+    }
+
+    private void setDistanceGraph(WeightedMultigraph<String, DefaultWeightedEdge> graph) {
+        List<String> stationNames = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+        for (String stationName : stationNames) {
+            graph.addVertex(stationName);
+        }
+        graph.setEdgeWeight(graph.addEdge("교대역", "강남역"), 2);
+        graph.setEdgeWeight(graph.addEdge("강남역", "역삼역"), 2);
+        graph.setEdgeWeight(graph.addEdge("교대역", "남부터미널역"), 3);
+        graph.setEdgeWeight(graph.addEdge("남부터미널역", "양재역"), 6);
+        graph.setEdgeWeight(graph.addEdge("양재역", "매봉역"), 1);
+        graph.setEdgeWeight(graph.addEdge("강남역", "양재역"), 2);
+        graph.setEdgeWeight(graph.addEdge("양재역", "양재시민의숲역"), 10);
     }
 
     private void init() {

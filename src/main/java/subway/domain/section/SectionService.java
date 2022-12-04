@@ -32,4 +32,8 @@ public class SectionService {
     public int getSectionDistance(Section section) {
         return section.getDistance();
     }
+
+    public List<Section> getSectionsByLine(String lineName) {
+        return SectionRepository.findSectionsByLineName(lineName);
+    }
 }
