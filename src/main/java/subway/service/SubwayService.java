@@ -8,6 +8,9 @@ public class SubwayService {
     private final WeightRepository weightRepository = WeightRepository.getInstance();
     private final StationService stationService = new StationService();
     private final LineService lineService = new LineService();
+    {
+        init();
+    }
 
     public List<String> getShortestDistancePath(String departureStation, String arrivalStation) {
         validDepartureAndArrivalStation(departureStation, arrivalStation);
