@@ -7,12 +7,12 @@
 - [x] 도착역 입력 받기 - #insertDestination()
 ---
 ### 출력을 담당하는 클래스 ClassName - OutputView 
-- [ ] 메인 화면 - #showMain()
-- [ ] 기능 선택 - #askFunction()
-- [ ] 기준 선택 - #askDomain()
-- [ ] 출발역 요청 - #askStart()
-- [ ] 도착역 요청 - #askDestination()
-- [ ] 결과 출력 - #printResult()
+- [x] 메인 화면 - #showMain()
+- [x] 기능 선택 - #askFunction()
+- [x] 기준 선택 - #askDomain()
+- [x] 출발역 요청 - #askStart()
+- [x] 도착역 요청 - #askDestination()
+- [x] 결과 출력 - #printResult()
 ---
 ### 역의 정보를 저장하는 클래스 ClassName - Station
 - 서비스 - StationService
