@@ -10,9 +10,9 @@ public class PathDto {
     private final int totalTime;
     private final List<String> path;
 
-    public PathDto(List<Integer> totalDiatanceAndTime, List<String> path) {
-        this.totalDistance = totalDiatanceAndTime.get(DISTANCE_INDEX);
-        this.totalTime = totalDiatanceAndTime.get(TIME_INDEX);
+    public PathDto(List<Integer> totalDistanceAndTime, List<String> path) {
+        this.totalDistance = totalDistanceAndTime.get(DISTANCE_INDEX);
+        this.totalTime = totalDistanceAndTime.get(TIME_INDEX);
         this.path = path;
     }
 
