@@ -2,13 +2,13 @@ package subway.domain.model;
 
 import java.util.List;
 
-public class Route {
+public class Path {
 
     private int time;
     private int distance;
     private List<Station> stationsOnTheRoute;
 
-    public Route(int time, int distance, List<Station> stationsOnTheRoute) {
+    public Path(int time, int distance, List<Station> stationsOnTheRoute) {
         this.time = time;
         this.distance = distance;
         this.stationsOnTheRoute = stationsOnTheRoute;
