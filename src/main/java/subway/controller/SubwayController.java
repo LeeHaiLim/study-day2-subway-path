@@ -55,10 +55,10 @@ public class SubwayController {
 
     private void findMenu(PathMenu pathMenu) {
         if (pathMenu == PathMenu.SHORTEST_DISTANCE) {
-            // runShortestDistance();
+            runShortestDistance();
         }
         if (pathMenu == PathMenu.MINIMUM_TIME) {
-            // runMinimumTime();
+            runMinimumTime();
         }
     }
 
@@ -67,7 +67,7 @@ public class SubwayController {
         List<String> path = subwayService.getShortestDistancePath(stations.get(0), stations.get(1));
         List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
         PathDto pathDto = new PathDto(totalDistanceAndTime, path);
-        // outputView logic
+        outputView.printResult(pathDto);
     }
 
     private void runMinimumTime() {
@@ -75,7 +75,7 @@ public class SubwayController {
         List<String> path = subwayService.getMinimumTimePath(stations.get(0), stations.get(1));
         List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
         PathDto pathDto = new PathDto(totalDistanceAndTime, path);
-        // outputView logic
+        outputView.printResult(pathDto);
     }
 
     private List<String> readDepartureAndArrivalStation() {
