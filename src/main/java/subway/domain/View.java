@@ -1,5 +1,8 @@
 package subway.domain;
 
+import subway.domain.model.Path;
+import subway.domain.model.Station;
+
 import java.util.Scanner;
 
 public class View {
@@ -39,7 +42,18 @@ public class View {
         System.out.println(PATH_CRITERIA);
     }
 
-    public void printInquiryResult() {
+    public void printInquiryResult(Path path) {
+        System.out.println(INQUIRY_RESULT);
+        printDistanceAndTime(path);
+        for(Station station : path.getStationsOnThePath()) {
+            System.out.println("[INFO] " + station.getName());
+        }
+    }
 
+    private void printDistanceAndTime(Path path) {
+        System.out.println("[INFO] ---");
+        System.out.println("[INFO] 총 거리: " + path.getDistance() + "km");
+        System.out.println("[INFO] 총 소요 시간: " + path.getTime() + "분");
+        System.out.println("[INFO] ---");
     }
 }
