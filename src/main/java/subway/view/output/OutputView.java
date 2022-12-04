@@ -6,6 +6,10 @@ public class OutputView {
         print(view.getText());
     }
 
+    public void printErrorMessage(Exception exception) {
+        print(exception.getMessage());
+    }
+
     private void print(String string) {
         System.out.println(string);
     }
