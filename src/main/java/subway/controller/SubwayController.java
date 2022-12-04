@@ -61,4 +61,30 @@ public class SubwayController {
             // runMinimumTime();
         }
     }
+
+    private void runShortestDistance() {
+        List<String> stations = readDepartureAndArrivalStation();
+        List<String> path = subwayService.getShortestDistancePath(stations.get(0), stations.get(1));
+        List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
+        PathDto pathDto = new PathDto(totalDistanceAndTime, path);
+        // outputView logic
+    }
+
+    private void runMinimumTime() {
+        List<String> stations = readDepartureAndArrivalStation();
+        List<String> path = subwayService.getMinimumTimePath(stations.get(0), stations.get(1));
+        List<Integer> totalDistanceAndTime = subwayService.getTotalDistanceAndTime(path);
+        PathDto pathDto = new PathDto(totalDistanceAndTime, path);
+        // outputView logic
+    }
+
+    private List<String> readDepartureAndArrivalStation() {
+        InputMessage.showArrivalMessage();
+        String departureStation = inputView.readStation(scanner);
+
+        InputMessage.showArrivalMessage();
+        String arrivalStation = inputView.readStation(scanner);
+
+        return List.of(departureStation, arrivalStation);
+    }
 }
