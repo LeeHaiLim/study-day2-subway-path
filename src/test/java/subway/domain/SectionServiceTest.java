@@ -41,7 +41,7 @@ class SectionServiceTest {
         Assertions.assertThat(SectionRepository.sections().size()).isEqualTo(2);
     }
 
-    @DisplayName("시작점 기준 구간 조회 기능 추가")
+    @DisplayName("시작점 기준 구간 조회 기능 테스트")
     @Test
     void getSectionsByStartTest() {
         sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
@@ -52,7 +52,7 @@ class SectionServiceTest {
 
     }
 
-    @DisplayName("종료점 기준 구간 조회 기능 추가")
+    @DisplayName("종료점 기준 구간 조회 기능 테스트")
     @Test
     void getSectionsByEndTest() {
         sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
@@ -60,5 +60,24 @@ class SectionServiceTest {
         sectionService.createSection("보문역", "성신여대입구역", "2호선", 5, 10);
 
         Assertions.assertThat(SectionRepository.findSectionsByEnd("길음역").size()).isEqualTo(1);
+    }
+
+    @DisplayName("구간 소요 시간 조회 테스트")
+    @Test
+    void getSectionTimeTest() {
+        sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
+        List<Section> section = SectionRepository.findSectionsByEnd("길음역");
+
+        Assertions.assertThat(section.get(0).getTime()).isEqualTo(5);
+
+    }
+
+    @DisplayName("구간 거리 조회 테스트")
+    @Test
+    void getSectionDistanceTest() {
+        sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
+        List<Section> section = SectionRepository.findSectionsByEnd("길음역");
+
+        Assertions.assertThat(section.get(0).getDistance()).isEqualTo(10);
     }
 }
