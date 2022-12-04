@@ -13,7 +13,7 @@ public class OutputView {
         print(view.getText());
     }
 
-    public void printResultDto(PathDto pathDto) {
+    public void printPathDto(PathDto pathDto) {
         printResult(DIVIDING_LINE);
         printResult(String.format(DISTANCE_FORMAT, pathDto.getTotalDistance()));
         printResult(String.format(TIME_FORMAT, pathDto.getTotalTime()));
@@ -27,7 +27,7 @@ public class OutputView {
         print(exception.getMessage());
     }
 
-    public void printResult(String string) {
+    private void printResult(String string) {
         print(RESULT_PREFIX + string);
     }
 
