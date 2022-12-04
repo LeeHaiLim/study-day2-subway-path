@@ -1,13 +1,21 @@
 package subway.domain.controller;
 
+import subway.domain.DomainInput;
+import subway.domain.MainInput;
 import subway.domain.line.LineService;
 import subway.domain.section.SectionService;
 import subway.domain.station.Station;
 import subway.domain.station.StationService;
+import subway.ui.InputView;
+import subway.ui.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Supplier;
+
+import static subway.domain.MainInput.END;
+import static subway.domain.MainInput.START;
 
 public class SubwayPathController {
     private final LineService lineService;
@@ -18,6 +26,32 @@ public class SubwayPathController {
         this.lineService = lineService;
         this.stationService = stationService;
         this.sectionService = sectionService;
+    }
+
+    public void runMain(Scanner scanner) {
+        do {
+            OutputView.showMain();
+            OutputView.askFunction();
+            MainInput mainInput = retryUntilSuccess(() -> InputView.insertMain(scanner));
+            if (mainInput.equals(END)) {
+                return;
+            }
+            OutputView.askFunction();
+            DomainInput domainInput = retryUntilSuccess(() -> InputView.insertFunction(scanner));
+            navigate(domainInput);
+        } while (true);
+    }
+
+    private void navigate(DomainInput domainInput) {
+        if (domainInput.equals(DomainInput.GO_BACK)) {
+            return ;
+        }
+        if (domainInput.equals(DomainInput.TIME_DOMAIN)) {
+
+        }
+        if (domainInput.equals(DomainInput.DISTANCE_DOMAIN)) {
+
+        }
     }
 
     public void run() {
@@ -59,7 +93,7 @@ public class SubwayPathController {
     }
 
     public static <T> T retryUntilSuccess(Supplier<T> supplier) {
-        while(true){
+        while (true) {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
