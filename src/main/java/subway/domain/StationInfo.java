@@ -21,6 +21,11 @@ public class StationInfo {
         setWeightByDistance(graph);
     }
 
+    public void setGraphByTime(WeightedMultigraph<Station, DefaultWeightedEdge> graph) {
+        addVertex(graph);
+        setWeightByTime(graph);
+    }
+
     private void addVertex(WeightedMultigraph<Station, DefaultWeightedEdge> graph) {
         for (Station station : stations) {
             graph.addVertex(station);
@@ -35,6 +40,17 @@ public class StationInfo {
             int distance = this.distance.get(index);
 
             graph.setEdgeWeight(graph.addEdge(beforeStation, afterStation), distance);
+        }
+    }
+
+    private void setWeightByTime(WeightedMultigraph<Station, DefaultWeightedEdge> graph) {
+        for (int index = 0; index < distance.size(); index++) {
+
+            Station beforeStation = stations.get(index);
+            Station afterStation = stations.get(index +1);
+            int time = this.time.get(index);
+
+            graph.setEdgeWeight(graph.addEdge(beforeStation, afterStation), time);
         }
     }
 }

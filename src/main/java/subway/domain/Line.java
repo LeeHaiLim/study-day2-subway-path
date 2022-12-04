@@ -20,5 +20,9 @@ public class Line {
         stationInfo.setGraphByDistance(graph);
     }
 
-    // 추가 기능 구현
+    public void setGraphByTime(WeightedMultigraph<Station, DefaultWeightedEdge> graph) {
+        stationInfo.setGraphByTime(graph);
+    }
+
+
 }
