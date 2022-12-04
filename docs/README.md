@@ -22,10 +22,10 @@
 ---
 ### 노선의 정보를 저장하는 클래스 ClassName - Line
 - 서비스 - LineService
-  - [ ] 노선 생성 - #createLine()
+  - [x] 노선 생성 - #createLine()
   - [ ] 역 이름으로 노선 조회 - #getLinesByStationName()
 - 레포지토리 - LineRepository
-  - [ ] 노선 전체 저장 - #saveAll()
+  - [x] 노선 전체 저장 - #saveAll()
   - [ ] 역 이름으로 노선 조회 - #findLinesByStationName()
 ---
 ### 환승 역들을 기준으로 구간들을 나누어 저장 ClassName - Section

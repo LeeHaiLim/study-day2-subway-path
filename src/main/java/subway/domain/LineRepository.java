@@ -24,8 +24,8 @@ public class LineRepository {
         lines.clear();
     }
 
-    public static void saveAll() {
-
+    public static void saveAll(List<Line> createdLines) {
+        lines.addAll(createdLines);
     }
 
     public static List<Line> findLinesByStationName() {
