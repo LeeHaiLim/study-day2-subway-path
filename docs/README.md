@@ -30,8 +30,8 @@
 ---
 ### 환승 역들을 기준으로 구간들을 나누어 저장 ClassName - Section
 - 도메인 - Section
-  - [ ] 소요 시간 조회 - #getTime()
-  - [ ] 거리 조회 - #getDistance()
+  - [x] 소요 시간 조회 - #getTime()
+  - [x] 거리 조회 - #getDistance()
   
 - 서비스 - SectionService
   - [ ] 구간 생성 - #createSection()
