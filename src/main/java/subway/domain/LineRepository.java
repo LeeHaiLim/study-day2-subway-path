@@ -32,9 +32,9 @@ public class LineRepository {
         lines.clear();
     }
 
-    public static DistanceDto getDistanceDto(Station station1, Station station2) {
+    public static SectionDto getDistanceDto(Station station1, Station station2) {
         for (Line line : lines) {
-            DistanceDto result = line.getDistanceDto(station1, station2);
+            SectionDto result = line.getDistanceDto(station1, station2);
             if (result != null) {
                 return result;
             }

@@ -2,7 +2,7 @@ package subway.domain;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
-import subway.dto.DistanceDto;
+import subway.dto.SectionDto;
 import java.util.List;
 
 public class StationInfo {
@@ -64,10 +64,10 @@ public class StationInfo {
         return false;
     }
 
-    public DistanceDto getDistanceDto(Station station1, Station station2) {
+    public SectionDto getDistanceDto(Station station1, Station station2) {
         for (int index = 0; index < stations.size()-1; index++) {
             if (isMatched(station1, station2, index)) {
-                return new DistanceDto(distance.get(index), time.get(index));
+                return new SectionDto(distance.get(index), time.get(index));
             }
         }
         return null;

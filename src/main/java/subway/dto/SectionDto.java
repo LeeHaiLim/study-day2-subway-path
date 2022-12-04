@@ -1,11 +1,11 @@
 package subway.dto;
 
-public class DistanceDto {
+public class SectionDto {
 
     private int distance;
     private int time;
 
-    public DistanceDto(int distance, int time) {
+    public SectionDto(int distance, int time) {
         this.distance = distance;
         this.time = time;
     }
