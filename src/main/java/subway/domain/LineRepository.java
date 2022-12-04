@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.dto.DistanceDto;
+import subway.exception.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,5 +30,16 @@ public class LineRepository {
 
     public static void deleteAll() {
         lines.clear();
+    }
+
+    public static DistanceDto getDistanceDto(Station station1, Station station2) {
+        for (Line line : lines) {
+            DistanceDto result = line.getDistanceDto(station1, station2);
+            if (result != null) {
+                return result;
+            }
+        }
+
+        throw new IllegalArgumentException(ErrorMessage.SERVICE_ERROR.getMessage());
     }
 }
