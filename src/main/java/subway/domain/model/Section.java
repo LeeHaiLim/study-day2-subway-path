@@ -1,23 +1,23 @@
 package subway.domain.model;
 
 public class Section {
-    private String upBoundStation;
-    private String downBoundStation;
+    private Station upBoundStation;
+    private Station downBoundStation;
     private int time;
     private int distance;
 
-    public Section(String upBoundStation, String downBoundStation, int time, int distance) {
+    public Section(Station upBoundStation, Station downBoundStation, int time, int distance) {
         this.upBoundStation = upBoundStation;
         this.downBoundStation = downBoundStation;
         this.time = time;
         this.distance = distance;
     }
 
-    public String getUpBoundStation() {
+    public Station getUpBoundStation() {
         return upBoundStation;
     }
 
-    public String getDownBoundStation() {
+    public Station getDownBoundStation() {
         return downBoundStation;
     }
 
