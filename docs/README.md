@@ -26,8 +26,8 @@
 
 - Station
   - [x] 초기 생성
-    - [ ] 이름 Validation 실시
-  - #getName()
+    - [x] 이름 Validation 실시
+  - [x] #getName()
   - [x] 입력받은 station의 이름이 같은지 비교하는 기능 #isEqual
 
 - LineRepository
