@@ -19,7 +19,7 @@
   - [x] 초기 생성시
     - Station 정보, 거리 정보, 걸리는 시간 정보를 가짐
     - [x] 이름 Validation 실시
-      - 2글자 이상, "역"으로 끝나야 한다.
+      - 2글자 이상, "선"으로 끝나야 한다.
   - [x] 거리에 따라 간선 정보를 입력하는 기능 #setGraphByDistance
   - [x] 소요 시간에 따라 간선 정보를 입력하는 기능 #setGraphByTime
   - [x] 입력받은 두 역이 붙어있는지 #isExistNextTo
@@ -27,7 +27,8 @@
 
 - Station
   - [x] 초기 생성
-    - [x] 이름 Validation 실시
+      - [x] 이름 Validation 실시
+      - 2글자 이상, "역"으로 끝나야 한다.
   - [x] #getName()
   - [x] 입력받은 station의 이름이 같은지 비교하는 기능 #isEqual
 
