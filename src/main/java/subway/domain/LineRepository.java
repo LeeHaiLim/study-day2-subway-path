@@ -23,4 +23,12 @@ public class LineRepository {
     public static void deleteAll() {
         lines.clear();
     }
+
+    public static void saveAll() {
+
+    }
+
+    public static List<Line> findLinesByStationName() {
+        return null;
+    }
 }
