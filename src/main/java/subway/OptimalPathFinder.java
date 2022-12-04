@@ -31,7 +31,7 @@ public class OptimalPathFinder {
         }
     }
 
-    public Path getRoute(Station startStation, Station endStation, String command) {
+    public Path getPath(Station startStation, Station endStation, String command) {
         List<Station> stations = findStations(startStation, endStation, command);
         int distance = getDistance(stations);
         int time = getTime(stations);
@@ -39,16 +39,20 @@ public class OptimalPathFinder {
     }
 
     private List<Station> findStations(Station startStation, Station endStation, String command) {
-        DijkstraShortestPath dijkstraShortestPath;
+        DijkstraShortestPath dijkstraShortestPath = null;
         if (command.equals("1")) {
             dijkstraShortestPath = new DijkstraShortestPath(shortestDistanceGraph);
-            return dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
         }
         if (command.equals("2")) {
             dijkstraShortestPath = new DijkstraShortestPath(minimunTimeGraph);
-            return dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
+
         }
-        throw new IllegalArgumentException("[ERROR] 잘못된 커맨드 입력");
+        try {
+            return dijkstraShortestPath.getPath(startStation, endStation).getVertexList();
+        }catch (NullPointerException e) {
+            throw new NullPointerException("[ERROR] 경로가 없습니다.");
+        }
+
     }
 
     public int getDistance(List<Station> stations) {

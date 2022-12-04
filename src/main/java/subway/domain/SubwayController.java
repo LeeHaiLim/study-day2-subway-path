@@ -1,9 +1,8 @@
 package subway.domain;
 
-import subway.View;
+import subway.OptimalPathFinder;
+import subway.domain.model.Path;
 import subway.domain.model.Station;
-import subway.domain.service.LineService;
-import subway.domain.service.StationService;
 
 import java.util.Scanner;
 
@@ -17,6 +16,7 @@ public class SubwayController {
     }
 
     public void run() {
+        Initializer.init();
         while(true) {
             view.printMainScreen();
             String input = view.selectFeature(scanner);
@@ -46,16 +46,26 @@ public class SubwayController {
 
     public void enterPath(String input) {
         // 출발역이랑 도착역 검증해야됨
-        Station start = new Station(view.enterEndPoint(scanner));
+        Station start = new Station(view.enterStartPoint(scanner));
         Station end = new Station(view.enterEndPoint(scanner));
 
         // 같은 역인지 검사하고
         checkSameStation(start, end);
 
         // 1번 or 2번으로 선택했던 걸로메소드에 의해서 어떤 결과물 객체 가져오기 ex) result
-        result = 어떤메소드(input);
+
+        OptimalPathFinder pathFinder = new OptimalPathFinder();
+        pathFinder.init();
+
+        Path path = pathFinder.getPath(start, end, input);
 
         // 그 결과물 객체에 담긴 내용 출력
-        view.printInquiryResult(result);
+        view.printInquiryResult(path);
+    }
+
+    private void checkSameStation(Station start, Station end) {
+        if(start.getName().equals(end.getName())) {
+            throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 같습니다.");
+        }
     }
 }

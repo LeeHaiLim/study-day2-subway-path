@@ -6,12 +6,12 @@ public class Path {
 
     private int time;
     private int distance;
-    private List<Station> stationsOnTheRoute;
+    private List<Station> stationsOnThePath;
 
-    public Path(int time, int distance, List<Station> stationsOnTheRoute) {
+    public Path(int time, int distance, List<Station> stationsOnThePath) {
         this.time = time;
         this.distance = distance;
-        this.stationsOnTheRoute = stationsOnTheRoute;
+        this.stationsOnThePath = stationsOnThePath;
     }
 
     public int getTime() {
@@ -22,7 +22,7 @@ public class Path {
         return distance;
     }
 
-    public List<Station> getStationsOnTheRoute() {
-        return stationsOnTheRoute;
+    public List<Station> getStationsOnThePath() {
+        return stationsOnThePath;
     }
 }
