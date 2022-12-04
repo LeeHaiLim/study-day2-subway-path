@@ -11,8 +11,8 @@ public class InputView {
         return MainInput.from(scanner.nextLine());
     }
 
-    public static DomainInput insertFunction() {
-        return null;
+    public static DomainInput insertFunction(Scanner scanner) {
+        return DomainInput.from(scanner.nextLine());
     }
 
     public static String insertStart() {
