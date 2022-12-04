@@ -1,4 +1,7 @@
-package subway.domain;
+package subway.domain.repository;
+
+import subway.domain.model.Line;
+import subway.domain.model.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,5 +25,12 @@ public class LineRepository {
 
     public static void deleteAll() {
         lines.clear();
+    }
+
+    public static Line findByName(String name) {
+        return lines.stream()
+                .filter(line -> name.equals(line.getName()))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력된 이름의 노선이 존재하지 않습니다."));
     }
 }
