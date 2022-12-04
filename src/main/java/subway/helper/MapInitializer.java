@@ -38,7 +38,7 @@ public class MapInitializer {
                         List.of(3,3)
                 )));
         lines.add(new Line("3호선", new StationInfo(
-                List.of(get("교대역"), get("남부터미넣"),get("양재역"),get("매봉역")),
+                List.of(get("교대역"), get("남부터미널역"),get("양재역"),get("매봉역")),
                 List.of(3,6,1),
                 List.of(2,5,1)
         )));
