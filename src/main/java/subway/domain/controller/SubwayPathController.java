@@ -82,14 +82,9 @@ public class SubwayPathController {
     public List<String> getTimeDomainResult(String start, String destination) {
         List<String> shortestTimePath = dijkstraShortestTimePath.getPath(start, destination).getVertexList();
         int distance = 0;
-//        for (int i = 0; i < shortestTimePath.size() - 1; i++) {
-//            List<Section> sections = sectionService.getSectionStart(shortestTimePath.get(i));
-//            for (Section section : sections) {
-//                se
-//            }
-//
-//
-//        }
+        for (int i = 0; i < shortestTimePath.size() - 2; i++) {
+            distance += dijkstraShortestPath.getPath(shortestTimePath.get(i), shortestTimePath.get(i + 1)).getWeight();
+        }
         shortestTimePath.add(String.valueOf(distance));
         shortestTimePath.add(String.valueOf(dijkstraShortestTimePath.getPath(start, destination).getWeight()));
         return shortestTimePath;
@@ -99,7 +94,7 @@ public class SubwayPathController {
         List<String> shortestPath = dijkstraShortestPath.getPath(start, destination).getVertexList();
         shortestPath.add(String.valueOf(dijkstraShortestPath.getPath(start, destination).getWeight()));
         int time = 0;
-        for (int i = 0; i < shortestPath.size() - 1; i++) {
+        for (int i = 0; i < shortestPath.size() - 2; i++) {
             time += dijkstraShortestTimePath.getPath(shortestPath.get(i), shortestPath.get(i + 1)).getWeight();
         }
         shortestPath.add(String.valueOf(time));
