@@ -12,6 +12,13 @@ public class StationService {
         stationRepository.addStation(stationName);
     }
 
+    public boolean isExistsStation(String stationName) {
+        if (stationRepository.findStationByName(stationName).isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
     public void init() {
         stationRepository.deleteAll();
         addStation("교대역");
