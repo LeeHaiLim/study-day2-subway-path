@@ -40,4 +40,25 @@ class SectionServiceTest {
         sectionService.createSection("보문역", "월곡역", "2호선", 5, 10);
         Assertions.assertThat(SectionRepository.sections().size()).isEqualTo(2);
     }
+
+    @DisplayName("시작점 기준 구간 조회 기능 추가")
+    @Test
+    void getSectionsByStartTest() {
+        sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
+        sectionService.createSection("보문역", "월곡역", "2호선", 5, 10);
+        sectionService.createSection("보문역", "성신여대입구역", "2호선", 5, 10);
+
+        Assertions.assertThat(SectionRepository.findSectionsByStart("보문역").size()).isEqualTo(2);
+
+    }
+
+    @DisplayName("종료점 기준 구간 조회 기능 추가")
+    @Test
+    void getSectionsByEndTest() {
+        sectionService.createSection("미아역", "길음역", "1호선", 5, 10);
+        sectionService.createSection("보문역", "월곡역", "2호선", 5, 10);
+        sectionService.createSection("보문역", "성신여대입구역", "2호선", 5, 10);
+
+        Assertions.assertThat(SectionRepository.findSectionsByEnd("길음역").size()).isEqualTo(1);
+    }
 }
