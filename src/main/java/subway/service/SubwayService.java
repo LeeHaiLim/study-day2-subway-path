@@ -8,6 +8,24 @@ public class SubwayService {
     private final LineService lineService = new LineService();
 
 
+    private void validDepartureAndArrivalStation(String departureStation, String arrivalStation) {
+        validStationEquals(departureStation, arrivalStation);
+        validExistsStation(departureStation);
+        validExistsStation(arrivalStation);
+    }
+
+    private void validStationEquals(String departureStation, String arrivalStation) {
+        if (departureStation.equals(arrivalStation)) {
+            throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 동일합니다.");
+        }
+    }
+
+    private void validExistsStation(String station) {
+        if (!stationService.isExistsStation(station)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+        }
+    }
+
     public void init() {
         stationService.init();
         lineService.init();
