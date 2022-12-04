@@ -50,7 +50,12 @@ public class Application {
             if (menu.isQuit()) {
                 break;
             }
-            runPath(scanner);
+            try {
+                runPath(scanner);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                runPath(scanner);
+            }
         }
     }
 
@@ -61,19 +66,23 @@ public class Application {
             return;
         }
         Station start = getInputStationStart(scanner);
-        Station end = getInputStationEnd(start, scanner);
+        Station end = getInputStationEnd(scanner);
+        if(start.equals(end)){
+            throw new IllegalArgumentException("출발역과 도착역이 같습니다.");
+        }
         if (menu.equals(PathMenu.DISTANCE)) {
             setEdgeWeightByDistance();
-            DijkstraShortestPath<Station, Edge> dijkstraShortestPath = new DijkstraShortestPath<>(graph);
-            outputView.printResult(dijkstraShortestPath.getPath(start, end).getEdgeList(),
-                    dijkstraShortestPath.getPath(start, end).getVertexList());
         }
         if (menu.equals(PathMenu.TIME)) {
             setEdgeWeightByTime();
-            DijkstraShortestPath<Station, Edge> dijkstraShortestPath = new DijkstraShortestPath<>(graph);
-            outputView.printResult(dijkstraShortestPath.getPath(start, end).getEdgeList(),
-                    dijkstraShortestPath.getPath(start, end).getVertexList());
         }
+        findShortestPath(start,end);
+    }
+
+    public void findShortestPath(Station start, Station end) {
+        DijkstraShortestPath<Station, Edge> dijkstraShortestPath = new DijkstraShortestPath<>(graph);
+        outputView.printResult(dijkstraShortestPath.getPath(start, end).getEdgeList(),
+                dijkstraShortestPath.getPath(start, end).getVertexList());
     }
 
     public MainMenu getInputMainMenu(Scanner scanner) {
@@ -103,16 +112,12 @@ public class Application {
         }
     }
 
-    public Station getInputStationEnd(Station start, Scanner scanner) {
+    public Station getInputStationEnd(Scanner scanner) {
         try {
-            Station end = StationRepository.getStation(inputView.readStationEnd(scanner));
-            if (start.equals(end)) {
-                throw new IllegalArgumentException("출발역과 도착역이 같습니다.");
-            }
-            return end;
+            return StationRepository.getStation(inputView.readStationEnd(scanner));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getInputStationEnd(start, scanner);
+            return getInputStationEnd(scanner);
         }
     }
 
