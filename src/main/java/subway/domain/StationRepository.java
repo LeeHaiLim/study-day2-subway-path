@@ -20,7 +20,7 @@ public class StationRepository {
 
     public static Station getStation(String stationName) {
         for (Station station : stations) {
-            if (station.getName() == stationName) {
+            if (station.getName().equals(stationName)) {
                 return station;
             }
         }
