@@ -16,10 +16,10 @@ public class Section {
     }
 
     public int getTime() {
-        return 0;
+        return this.time;
     }
 
     public int getDistance() {
-        return 0;
+        return this.distance;
     }
 }
