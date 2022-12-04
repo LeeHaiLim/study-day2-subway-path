@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -28,7 +30,11 @@ public class LineRepository {
         lines.addAll(createdLines);
     }
 
-    public static List<Line> findLinesByStationName() {
-        return null;
+    public static List<Line> findLinesByStationName(String stationName) {
+        return lines().stream()
+                .filter(line -> line.getStations().stream()
+                        .map(Station::getName)
+                        .collect(Collectors.toList()).contains(stationName))
+                .collect(Collectors.toList());
     }
 }

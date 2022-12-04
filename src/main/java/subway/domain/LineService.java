@@ -16,7 +16,7 @@ public class LineService {
         LineRepository.saveAll(lines);
     }
 
-    public List<Line> getLinesByStationName() {
-        return null;
+    public List<Line> getLinesByStationName(String stationName) {
+        return LineRepository.findLinesByStationName(stationName);
     }
 }
