@@ -52,12 +52,19 @@ public class WeightRepository {
     private void addWeightInfo(String station1, String station2, int distanceWeight, int timeWight) {
         weightInfo.put(List.of(station1, station2), List.of(distanceWeight, timeWight));
     }
-    
+
     public List<String> getShortestDistancePath(String station1, String station2) {
         return dijkstraDistancePath.getPath(station1, station2).getVertexList();
     }
 
     public List<String> getMinimumTimePath(String station1, String station2) {
         return dijkstraTimePath.getPath(station1, station2).getVertexList();
+    }
+
+    public List<String> getWeight(String station1, String station2) {
+        return weightInfo.keySet().stream()
+                .filter(stations -> stations.containsAll(List.of(station1, station2)))
+                .findAny()
+                .get();
     }
 }
