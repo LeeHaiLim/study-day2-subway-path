@@ -37,11 +37,11 @@
   - [x] 구간 생성 - #createSection()
   - [x] 구간의 시작점 조회 - #getSectionStart()
   - [x] 구간의 종료지점 조회 - #getSectionEnd()
-  - [ ] 구간의 소요 시간 조회 - #getSectionTime()
-  - [ ] 구간의 거리 조회 - #getSectionDistance()
+  - [x] 구간의 소요 시간 조회 - #getSectionTime()
+  - [x] 구간의 거리 조회 - #getSectionDistance()
 - 레포지토리 - SectionRepository
-  - [ ] 구간 저장 - #save()
-  - [ ] 구간의 시작점으로 조회 - #findSectionsByStart()
-  - [ ] 구간의 종료지점으로 조회 - #findSectionsByEnd()
+  - [x] 구간 저장 - #save()
+  - [x] 구간의 시작점으로 조회 - #findSectionsByStart()
+  - [x] 구간의 종료지점으로 조회 - #findSectionsByEnd()
 ---
 

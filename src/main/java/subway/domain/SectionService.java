@@ -19,11 +19,11 @@ public class SectionService {
         return SectionRepository.findSectionsByEnd(stationName);
     }
 
-    public int getSectionTime() {
-        return 0;
+    public int getSectionTime(Section section) {
+        return section.getTime();
     }
 
-    public int getSectionDistance() {
-        return 0;
+    public int getSectionDistance(Section section) {
+        return section.getDistance();
     }
 }
