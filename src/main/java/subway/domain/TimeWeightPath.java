@@ -4,6 +4,7 @@ import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
 
+import java.util.Collections;
 import java.util.List;
 
 public class TimeWeightPath {
@@ -24,7 +25,7 @@ public class TimeWeightPath {
 
     public List<String> getMinimumTimePath(String station1, String station2) {
         try {
-            return dijkstraTimePath.getPath(station1, station2).getVertexList();
+            return Collections.unmodifiableList(dijkstraTimePath.getPath(station1, station2).getVertexList());
         } catch (NullPointerException e) {
             throw new IllegalArgumentException("[ERROR] 출발역과 도착역이 연결되어있지 않습니다.");
         }
