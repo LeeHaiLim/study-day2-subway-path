@@ -8,11 +8,21 @@ import java.util.List;
 public class LineService {
 
     public void registerLine(String name) {
+        validateLineNameLength(name);
+        validateLineDuplication(name);
+        LineRepository.addLine(new Line(name));
+    }
 
+    private void validateLineNameLength(String name) {
+        if(name.length() < 2) {
+            throw new IllegalArgumentException("[ERROR] 노선의 이름은 2글자 이상이어야 합니다.");
+        }
+    }
+
+    private void validateLineDuplication(String name) {
         if(LineRepository.findByName(name) != null) {
             throw new IllegalArgumentException("[ERROR] 입력한 노선은 이미 등록되어있습니다.");
         }
-        LineRepository.addLine(new Line(name));
     }
 
     public void deleteLine(String name) {
