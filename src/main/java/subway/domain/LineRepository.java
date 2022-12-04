@@ -30,6 +30,12 @@ public class LineRepository {
         lines.addAll(createdLines);
     }
 
+    public static Line findByName(String lineName) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(lineName))
+                .findAny().orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
+    }
+
     public static List<Line> findLinesByStationName(String stationName) {
         return lines().stream()
                 .filter(line -> line.getStations().stream()

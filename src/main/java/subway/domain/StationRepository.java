@@ -27,4 +27,10 @@ public class StationRepository {
     public static void saveAll(List<Station> createdStations) {
         stations.addAll(createdStations);
     }
+
+    public static Station findByName(String name) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findAny().orElseThrow(()->new IllegalArgumentException("[ERROR]"));
+    }
 }

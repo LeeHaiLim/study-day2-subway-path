@@ -1,14 +1,12 @@
 package subway.domain;
 
 public class SectionService {
-    private final SectionRepository sectionRepository;
 
-    public SectionService(SectionRepository sectionRepository) {
-        this.sectionRepository = sectionRepository;
-    }
-
-    public void createSection() {
-
+    public void createSection(String startName, String endName, String lineName, int time, int distance) {
+        Station start = StationRepository.findByName(startName);
+        Station end = StationRepository.findByName(endName);
+        Line line = LineRepository.findByName(lineName);
+        SectionRepository.save(new Section(start,end,line,time,distance));
     }
 
     public Station getSectionStart() {

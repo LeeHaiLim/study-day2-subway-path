@@ -34,7 +34,7 @@
   - [x] 거리 조회 - #getDistance()
   
 - 서비스 - SectionService
-  - [ ] 구간 생성 - #createSection()
+  - [x] 구간 생성 - #createSection()
   - [ ] 구간의 시작점 조회 - #getSectionStart()
   - [ ] 구간의 종료지점 조회 - #getSectionEnd()
   - [ ] 구간의 소요 시간 조회 - #getSectionTime()
