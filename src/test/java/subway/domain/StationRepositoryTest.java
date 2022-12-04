@@ -25,4 +25,11 @@ public class StationRepositoryTest {
             StationRepository.addStations(List.of(station, station));
         });
     }
+
+    @Test
+    void getStationTest_Exception() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StationRepository.getStation("없는역이름");
+        });
+    }
 }
