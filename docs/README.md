@@ -3,8 +3,8 @@
 ### 입력을 담당하는 클래스 ClassName - InputView
 - [x] 메인 입력 받기 - #insertMain()
 - [x] 기능 입력 받기 - #intsertFunction()
-- [ ] 출발역 입력받기 - #insertStart()
-- [ ] 도착역 입력 받기 - #insertDestination()
+- [x] 출발역 입력받기 - #insertStart()
+- [x] 도착역 입력 받기 - #insertDestination()
 ---
 ### 출력을 담당하는 클래스 ClassName - OutputView 
 - [ ] 메인 화면 - #showMain()

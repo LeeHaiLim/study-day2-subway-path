@@ -7,6 +7,7 @@ import subway.domain.MainInput;
 import java.util.Scanner;
 
 public class InputView {
+
     public static MainInput insertMain(Scanner scanner) {
         return MainInput.from(scanner.nextLine());
     }
@@ -15,12 +16,12 @@ public class InputView {
         return DomainInput.from(scanner.nextLine());
     }
 
-    public static String insertStart() {
-        return null;
+    public static String insertStart(Scanner scanner) {
+        return scanner.nextLine();
     }
 
-    public static String insertDestination() {
-        return null;
+    public static String insertDestination(Scanner scanner) {
+        return scanner.nextLine();
     }
 
 }
