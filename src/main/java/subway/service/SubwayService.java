@@ -9,6 +9,16 @@ public class SubwayService {
     private final StationService stationService = new StationService();
     private final LineService lineService = new LineService();
 
+    public List<String> getShortestDistancePath(String departureStation, String arrivalStation) {
+        validDepartureAndArrivalStation(departureStation, arrivalStation);
+        return weightRepository.getShortestDistancePath(departureStation, arrivalStation);
+    }
+
+    public List<String> getMinimumTimePath(String departureStation, String arrivalStation) {
+        validDepartureAndArrivalStation(departureStation, arrivalStation);
+        return weightRepository.getMinimumTimePath(departureStation, arrivalStation);
+    }
+
     public List<Integer> getTotalDistanceAndTime(List<String> path) {
         int totalDistance = 0;
         int totalTime = 0;
