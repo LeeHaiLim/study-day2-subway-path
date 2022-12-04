@@ -29,4 +29,33 @@ class SubwayServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 출발역과 도착역이 동일합니다.");
     }
+
+
+    @DisplayName("최단 거리 기준 조회 순방향")
+    @Test
+    void getShortestDistancePathTest() {
+        List<String> path = subwayService.getShortestDistancePath("교대역", "양재역");
+        Assertions.assertThat(path).isEqualTo(List.of("교대역", "강남역", "양재역"));
+    }
+
+    @DisplayName("최소 시간 기준 조회 순방향")
+    @Test
+    void getMinimumTimePathTest() {
+        List<String> path = subwayService.getMinimumTimePath("교대역", "양재역");
+        Assertions.assertThat(path).isEqualTo(List.of("교대역", "남부터미널역", "양재역"));
+    }
+
+    @DisplayName("최단 거리 기준 조회 역방향")
+    @Test
+    void getShortestDistancePathTest2() {
+        List<String> path = subwayService.getShortestDistancePath("양재역", "교대역");
+        Assertions.assertThat(path).isEqualTo(List.of("양재역", "강남역", "교대역"));
+    }
+
+    @DisplayName("최소 시간 기준 조회 역방향")
+    @Test
+    void getMinimumTimePathTest2() {
+        List<String> path = subwayService.getMinimumTimePath("양재역", "교대역");
+        Assertions.assertThat(path).isEqualTo(List.of("양재역", "남부터미널역", "교대역"));
+    }
 }
