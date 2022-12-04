@@ -9,7 +9,7 @@ public class InputView {
     private final static String REQUEST_END_STATION = "\n## 도착역을 입력하세요.";
     private Scanner scanner;
 
-    InputView(Scanner scanner) {
+    public InputView(Scanner scanner) {
         this.scanner = scanner;
     }
 
