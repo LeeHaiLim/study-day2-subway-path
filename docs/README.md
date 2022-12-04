@@ -37,8 +37,10 @@
   - [x] 입력받은 (붙어있는) 두 역 사이에 거리, 시간 조회 #getDistanceDto
 
 - StationRepository
-    - [ ] 역들을 저장하는 기능 #saveStations()
-    - [ ] 역을 조회하는 기능 #getStations()
+    - [x] 역들을 저장하는 기능 #addStations()
+      - [ ] 중복된 역이름이 있을 경우 에러 발생 
+    - [x] 역을 조회하는 기능 #getStations()
+      - [x] 해당 역이 없다면 에러를 발생함
 
 - MapInitializer
   - [ ] 초기 역 정보를 저장 및 객체 반환

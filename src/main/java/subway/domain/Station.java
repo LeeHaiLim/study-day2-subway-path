@@ -12,7 +12,11 @@ public class Station {
     }
 
     public boolean isEqual(Station station) {
-        return station.getName().equals(station.getName());
+        return name.equals(station.getName());
+    }
+
+    public boolean isEqual(String stationName) {
+        return name.equals(stationName);
     }
 
     // 추가 기능 구현
