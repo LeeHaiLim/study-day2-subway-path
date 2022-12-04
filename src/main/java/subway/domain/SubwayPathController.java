@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class SubwayPathController {
     private final LineService lineService;
@@ -50,5 +51,15 @@ public class SubwayPathController {
         sectionService.createSection("양재역", "매봉역", "3호선", 1, 1);
         sectionService.createSection("강남역", "양재역", "신분당선", 8, 2);
         sectionService.createSection("양재역", "양재시민의숲역", "신분당선", 3, 10);
+    }
+
+    public static <T> T retryUntilSuccess(Supplier<T> supplier) {
+        while(true){
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
