@@ -1,7 +1,11 @@
 package subway.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Line {
-    private String name;
+    private final String name;
+    private List<Edge> edges = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -11,5 +15,11 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public void addEdge(Edge edge) {
+        edges.add(edge);
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
 }
